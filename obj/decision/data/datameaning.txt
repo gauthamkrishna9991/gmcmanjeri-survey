@@ -1,0 +1,20 @@
+START WITH COLORS {
+	0 => 'G' (Green, <10%), 1 => 'Y' (Yellow, 10%-20%), 2 => 'O' (Orange, 20%-30%), 3 => 'R' (Red, 30%-40%), 4 => 'D' (Dark Red/Danger, >40%)
+}
+
+DIABETES-NO VALS [0-319], DIABETES-YES VALS [320-639] #DIFF=320
+{
+	MALE [0-159], FEMALE [160-319] #DIFF=160
+	{
+		SMOKER [0-79], NON-SMOKER[80-159] #DIFF=80
+		{
+			#AGES: 70 [0-19], 60 [20-39], 50 [40-59], 40 [60-79] #DIFF=20, #PARAM={(70-[AGE%10])*2}
+			{
+				#SBP 180 [0-4], 160 [5-9], 140 [10-14], 120[15-19] #DIFF=5 #PARAM={(180-SBP)/4}
+				{
+					#CHOLESTEROL 4 [0], 5 [1], 6 [2], 7[3] #DIFF=1
+				}
+			}
+		}
+	}
+}
