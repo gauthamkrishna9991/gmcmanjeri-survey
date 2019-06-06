@@ -68,6 +68,32 @@ public class WhoIsh
         }
     }
     
+    public static Color returnEle(boolean Diabetes, boolean Gender, boolean Smoker, int Age, int SBP, String fileName)
+    {
+        int Position = 0;
+
+        if(!Diabetes)
+            Position += 64;
+        if(Gender)
+            Position += 32;
+        if(Smoker)
+            Position += 16;
+
+        Position += ((-0.4*Age + 28));
+        Position += ((180 - SBP)/20);
+
+        try
+        {
+            int position2 = Position;
+            return new WhoIsh(getLine(fileName, position2)).color;
+        }
+        catch(IOException e)
+        {
+            System.out.println("PRINTING NOT CORRECT");
+            return Color.Danger;
+        }
+    }
+
     public static void main(String[] args) throws IOException
     {
         Scanner sc = new Scanner(System.in);
@@ -115,7 +141,7 @@ public class WhoIsh
             Chl = 4;
         else
             Chl = swInt;
-        System.out.println(returnEle(Db,Gn,Sm,Ag,SBP,Chl,"data.txt"));
+        System.out.println(Chl ==0 ? returnEle(Db,Gn,Sm,Ag,SBP,"data_withoutchol.txt") : returnEle(Db,Gn,Sm,Ag,SBP,Chl,"data.txt"));
         sc.close();
     }
 }
